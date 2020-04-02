@@ -1,0 +1,83 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #010814;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.myHeader {
+  text-align: center;
+  align-items: center;
+  
+}
+.my-Input{
+  font-size: 23px !important;
+  max-width: 50vw;
+
+
+}
+.my-Colors{
+  background-color: #20232a;
+  font-size: xx-large !important;
+  color: #ffffff !important;
+  height: 100px;
+  margin: auto;
+  font-style: oblique;
+
+
+}
+.my-InputTodo{
+  max-width: fit-content;
+  margin: 10px;
+  margin-bottom: 5px !important;
+  text-align: center;
+  width:fit-content;
+}
+.headerNote
+{
+  margin-top: 1px !important;
+}
+
+.my-space{
+  margin-left: 20px !important;
+  margin-top: 17px!important;
+}
+.my-card{
+  margin-top: 20px !important;
+}
+.my-grid{
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+}
+.App-link {
+  color: #61dafb;
+}
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
