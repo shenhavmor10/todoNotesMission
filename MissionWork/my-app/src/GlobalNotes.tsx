@@ -1,6 +1,7 @@
 import {observable,IObservableArray} from 'mobx';
 import axios from 'axios';
 
+
 export class ITodo{
     todoId:number=0;
     title:string='';
@@ -24,18 +25,20 @@ class GlobalNotes {
     @observable popupMessage:string='You have the max amount of notes !! if you want to add more notes \n please remove some in order to make new ones.';
     public async getInitialData()
     {
-      const homePage=await axios.get('http://localhost:3010/notes');
-      myNotes.notes=homePage.data;
+      const homePage=await axios.get('http://127.0.0.1:8000/notes');
+      console.log(homePage.data)
+      myNotes.notes=JSON.parse(homePage.data);
     }
-    public async deleteNoteToServer(_id?:string){
-      await axios.delete('http://localhost:3010/notes/'+_id);
+    public async deleteNoteToServer(id:number){
+      await axios.get('http://127.0.0.1:8000/notes/'+id);
     }
     public async addNoteToServer(note:INotes){
-      await axios.post('http://localhost:3010/notes',note);
+      await axios.post('http://127.0.0.1:8000/notes',note);
       this.getInitialData();
     }
     public async updateNoteToServer(note:INotes){
-      await axios.patch('http://localhost:3010/notes/'+note._id,note);
+      await axios.post('http://127.0.0.1:8000/notes/update',note);
+      console.log("after post")
     }
     public addNote(noteName:string){
         if(this.currentNotesCount<this.maxNotes)
@@ -47,9 +50,9 @@ class GlobalNotes {
           }
           else
           {
-            newNote.id=myNotes.notes[myNotes.notes.length-1].id+1;
+            newNote.id=+myNotes.notes[myNotes.notes.length-1].id+1;
+            console.log(newNote.id)
           }
-          console.log(newNote.id);
           newNote.noteName=noteName;
           this.notes.push(newNote);
           this.currentNotesCount=this.currentNotesCount+1;
@@ -77,11 +80,12 @@ class GlobalNotes {
         myNotes.notes[idNote].todos[idTodo].completed=!myNotes.notes[idNote].todos[idTodo].completed;
         this.updateNoteToServer(myNotes.notes[idNote]);
 
+
     }
-    public deleteNote(id:number,_id:string){
+    public deleteNote(id:number){
       this.notes.replace([...this.notes.filter(note=>note.id!==id)]);
       this.currentNotesCount=this.currentNotesCount-1;
-      this.deleteNoteToServer(_id);
+      this.deleteNoteToServer(id);
     }
       
 }

@@ -26,7 +26,7 @@ class Note extends Component<Iprops,Istate> {
     {myNotes.notes[this.props.id].noteName}
         
         <Button onClick={(e)=>{
-            myNotes.deleteNote(myNotes.notes[this.props.id].id,myNotes.notes[this.props.id]._id);
+            myNotes.deleteNote(myNotes.notes[this.props.id].id);
         }} className = 'my-space' basic color='red' content='X' />
     </Header>
     <Form onSubmit ={(e)=>{
@@ -49,6 +49,7 @@ class Note extends Component<Iprops,Istate> {
                     <Checkbox checked = {todo.completed} onChange={(e)=>{
                         myNotes.markComplete(this.props.id,todo.todoId);
                         this.setState({checked:true})
+                        console.log("fff")
                     }}
                     ></Checkbox>
                      {todo.title}

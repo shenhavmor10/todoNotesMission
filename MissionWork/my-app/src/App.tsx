@@ -26,7 +26,8 @@ class App extends Component<Iprops,Istate> {
   render(){
     return (<div className = "myHeader">
       <Header className = 'my-Colors' as = "h1"textAlign='center'>Notes & Todos</Header>
-      {myNotes.notes.length===myNotes.maxNotes&&<Header as ="h2">{myNotes.popupMessage}</Header>}
+      {myNotes.notes.length===myNotes.maxNotes&&<Header as ="h2">{myNotes.popupMessage}
+      </Header>}
         <Form onSubmit ={(e)=>{
           myNotes.addNote(this.state.noteName);
           this.setState({noteName:""})
